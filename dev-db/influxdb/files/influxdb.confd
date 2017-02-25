@@ -1,0 +1,3 @@
+# configurations for influxdb
+
+INFLUXD_OPTS=""
