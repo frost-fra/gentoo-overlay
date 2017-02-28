@@ -30,10 +30,10 @@ SRC_URI="https://${EGO_PN%/*}/archive/v${PV}.tar.gz -> ${P}.tar.gz
 
 KEYWORDS="~amd64 ~arm"
 
-DESCRIPTION="Docker Registry 2 authentication server"
-HOMEPAGE="http://github.com/cesanta/docker_auth"
+DESCRIPTION="The InfluxDB time series database"
+HOMEPAGE="https://github.com/influxdata/influxdb"
 
-LICENSE="Apache-2.0"
+LICENSE="MIT"
 SLOT="0"
 IUSE=""
 
