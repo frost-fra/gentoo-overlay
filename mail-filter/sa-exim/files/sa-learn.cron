@@ -1,0 +1,10 @@
+#!/bin/sh
+
+for foo in /home/*; do
+  if [ -x $foo/.maildir/.Spam ]; then
+      user=`basename $foo`
+      echo "Learn Spam for User:" $user
+      /usr/bin/sa-learn -u $user --spam $foo/.maildir/.Spam/cur
+      rm $foo/.maildir/.Spam/cur/*
+  fi
+done
