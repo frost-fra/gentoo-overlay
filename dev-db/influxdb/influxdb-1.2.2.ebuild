@@ -98,7 +98,8 @@ src_install() {
 	popd || die
 	pushd src/${EGO_PN%/*} || die
 	insinto /etc/influxdb
-	newins etc/config.sample.toml influxdb.conf.example
+	newins etc/config.sample.toml influxdb.conf.orig
+	newins "${FILESDIR}/${PN}.conf" "${PN}.conf"
 	insinto /etc/logrotate.d
 	newins scripts/logrotate influxdb
 	popd || die
