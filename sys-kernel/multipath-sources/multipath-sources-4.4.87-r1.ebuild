@@ -30,6 +30,7 @@ src_prepare() {
 	else
 		einfo "MPTCP seems to be included, skipping patch"
 	fi
+	epatch "${FILESDIR}/001-devicetree_wifi.patch"
 }
 
 pkg_postinst() {
