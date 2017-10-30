@@ -18,7 +18,9 @@ MPTCP_FILE="mptcp-v4.4.83-e427a066208a.patch"
 
 DESCRIPTION="Gentoo Kernel Sources sources with Multipath support for the ${KV_MAJOR}.${KV_MINOR} kernel tree"
 
-SRC_URI="${KERNEL_URI} ${GENPATCHES_URI} ${ARCH_URI} http://multipath-tcp.org/patches/${MPTCP_FILE}"
+SRC_URI="${KERNEL_URI} ${GENPATCHES_URI} ${ARCH_URI}
+	 http://multipath-tcp.org/patches/${MPTCP_FILE}
+	 https://github.com/frost-fra/firmware/archive/bdb578256c4f3fd028d22025bb21da3edc938c6d.tar.gz -> ap6181-firmware.tar.gz"
 
 src_prepare() {
 	if [ ! -d "$WORKDIR/net/mptcp" ]; then
@@ -31,6 +33,7 @@ src_prepare() {
 		einfo "MPTCP seems to be included, skipping patch"
 	fi
 	epatch "${FILESDIR}/001-devicetree_wifi.patch"
+	unpack "ap6181-firmware.tar.gz"
 }
 
 pkg_postinst() {
