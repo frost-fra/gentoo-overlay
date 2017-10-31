@@ -1,20 +1,20 @@
---- a/arch/arm/boot/dts/sun7i-a20-bananapro.dts	2017-10-29 19:37:29.161788221 +0100
-+++ b/arch/arm/boot/dts/sun7i-a20-bananapro.dts	2017-10-29 19:37:47.981788230 +0100
-@@ -76,6 +76,13 @@
+--- a/arch/arm/boot/dts/sun7i-a20-bananapro.dts	2017-10-31 14:09:25.590476067 +0100
++++ b/arch/arm/boot/dts/sun7i-a20-bananapro.dts	2017-10-31 14:16:11.966258876 +0100
+@@ -71,6 +71,13 @@
  		};
  	};
  
-+	wifi_pwrseq: wifi-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vmmc3_pin_bananapro>;
-+		reset-gpios = <&pio 7 22 GPIO_ACTIVE_LOW>;
-+	};
++        wifi_pwrseq: wifi-pwrseq {
++                compatible = "mmc-pwrseq-simple";
++                pinctrl-names = "default";
++                pinctrl-0 = <&vmmc3_pin_bananapro>;
++                reset-gpios = <&pio 7 22 GPIO_ACTIVE_LOW>;
++        };
 +
  	reg_gmac_3v3: gmac-3v3 {
  		compatible = "regulator-fixed";
  		pinctrl-names = "default";
-@@ -87,17 +94,6 @@
+@@ -82,17 +89,6 @@
  		enable-active-high;
  		gpio = <&pio 7 23 GPIO_ACTIVE_HIGH>;
  	};
@@ -32,7 +32,7 @@
  };
  
  &ahci {
-@@ -166,10 +162,19 @@
+@@ -161,10 +157,19 @@
  &mmc3 {
  	pinctrl-names = "default";
  	pinctrl-0 = <&mmc3_pins_a>;
@@ -43,13 +43,13 @@
  	non-removable;
  	status = "okay";
 +
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+		interrupt-parent = <&pio>;
-+		interrupts = <7 15 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-names = "host-wake";
-+	};
++        brcmf: wifi@1 {
++                reg = <1>;
++                compatible = "brcm,bcm4329-fmac";
++                interrupt-parent = <&pio>;
++                interrupts = <7 15 IRQ_TYPE_LEVEL_LOW>;
++                interrupt-names = "host-wake";
++        };
  };
  
  &ohci0 {
