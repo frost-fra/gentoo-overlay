@@ -20,7 +20,7 @@ DESCRIPTION="Gentoo Kernel Sources sources with Multipath support for the ${KV_M
 
 SRC_URI="${KERNEL_URI} ${GENPATCHES_URI} ${ARCH_URI}
 	 http://multipath-tcp.org/patches/${MPTCP_FILE}
-	 https://github.com/frost-fra/firmware/archive/bdb578256c4f3fd028d22025bb21da3edc938c6d.tar.gz -> ap6181-firmware.tar.gz"
+	 https://github.com/frost-fra/firmware/raw/master/wifi-adapter/ap6181-firmware.tar.gz"
 
 src_prepare() {
 	if [ ! -d "$WORKDIR/net/mptcp" ]; then
