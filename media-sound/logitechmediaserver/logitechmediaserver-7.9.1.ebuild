@@ -7,7 +7,7 @@ inherit eutils user
 
 MAJOR_VER="${PV:0:3}"
 MINOR_VER="${PV:4:1}"
-BUILD_NUM="1487582706"
+BUILD_NUM="1522157629"
 MY_P="logitechmediaserver-${MAJOR_VER}.${MINOR_VER}-noCPAN"
 MY_P_BUILD_NUM="logitechmediaserver-${MAJOR_VER}.${MINOR_VER}-${BUILD_NUM}-noCPAN"
 
@@ -40,7 +40,7 @@ RDEPEND="
 	virtual/mysql
 	avahi? ( net-dns/avahi )
 	>=dev-lang/perl-5.8.8
-	<=dev-perl/Audio-Scan-0.95
+	<=dev-perl/Audio-Scan-0.930.0-r1
 	>=dev-perl/Class-C3-XS-0.13
 	>=dev-perl/Class-XSAccessor-1.03
 	>=virtual/perl-IO-Compress-2.015
