@@ -157,6 +157,10 @@ src_prepare() {
 
 			sed -i -e "/^HARD_CFLAGS = /s|=|= ${gcc_hard_flags} |" "${S}"/gcc/Makefile.in || die
 		fi
+		# Patch zum original ebuild hinzugefuegt.
+		# Behebt den dereferencing pointer to incomplete type
+		# Fehler in der Datei unwind-dw2.c
+		epatch "${FILESDIR}/${P}-linux-unwind.patch"
 	fi
 
 	# Ada gnat compiler bootstrap preparation
