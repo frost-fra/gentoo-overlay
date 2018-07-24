@@ -6,7 +6,7 @@
 # Deletet the line responsible for the remove of license.txt
 # Added boost 1.56 depandancy, the mex file in the path
 # /opt/matlab/R2018a/bin/glnxa64/ depends on boost 1.56
-# check with ldd mex in /opt/matlab/R2018a/bin/glnxa64/
+# check with "ldd mex | grep boost" in /opt/matlab/R2018a/bin/glnxa64/
 # Added a new parameter -javauserdir that will be
 # set when the Installer script is called.
 # Its neccessary because the jre runtime tries to create
@@ -18,13 +18,19 @@
 # Therfore the install_unix script that can be found
 # inside the matlab_R2018a/bin/glnxa64/ folder has to
 # be modified.
+# Also needs Python v3.5 installed, it Matlab didnt support
+# the newer Python v3.6
+# All supported Python versions can be found under the path
+# /opt/matlab/R2018a/bin/glnxa64/ then search for matlabruntimeforpython
 #
 # Distributed under the terms of the ISC licence
 # $Header: $
 
 EAPI=5
 
-inherit cdrom
+PYTHON_COMPAT=( python2_7 python3_{3,4,5} )
+
+inherit distutils-r1 cdrom
 
 MY_PV=R${PV}
 
@@ -41,8 +47,8 @@ IUSE=""
 HDEPEND="app-admin/chrpath"
 LIBDEPEND="~dev-libs/boost-1.56.0"
 LIBDEPEND=""
-DEPEND="${LIBDEPEND}"
-RDEPEND="${LIBDEPEND}"
+RDEPEND="${PYTHON_DEPS} ${LIBDEPEND}"
+DEPEND="${RDEPEND}"
 [[ ${EAPI} == *-hdepend ]] || DEPEND+=" ${HDEPEND}"
 
 S=${WORKDIR}

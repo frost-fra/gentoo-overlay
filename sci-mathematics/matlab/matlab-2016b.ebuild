@@ -10,7 +10,9 @@
 
 EAPI=5
 
-inherit cdrom
+PYTHON_COMPAT=( python2_7 python3_{3,4,5} )
+
+inherit distutils-r1 cdrom
 
 MY_PV=R${PV}
 
@@ -26,8 +28,8 @@ IUSE=""
 
 HDEPEND="app-admin/chrpath"
 LIBDEPEND="~dev-libs/boost-1.56.0"
-DEPEND="${LIBDEPEND}"
-RDEPEND="${LIBDEPEND}"
+RDEPEND="${PYTHON_DEPS} ${LIBDEPEND}"
+DEPEND="${RDEPEND}"
 [[ ${EAPI} == *-hdepend ]] || DEPEND+=" ${HDEPEND}"
 
 S=${WORKDIR}
