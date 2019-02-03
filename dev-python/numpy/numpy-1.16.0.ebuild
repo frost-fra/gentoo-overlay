@@ -66,10 +66,10 @@ python_prepare_all() {
 			[blas]
 			include_dirs = $(pc_incdir cblas)
 			library_dirs = $(pc_libdir cblas blas):${libdir}
-			blas_libs = $(pc_libs cblas blas)
+			blas_libs = mkl_rt
 			[lapack]
 			library_dirs = $(pc_libdir lapack):${libdir}
-			lapack_libs = $(pc_libs lapack)
+			lapack_libs = mkl_rt
 		EOF
 	else
 		export {ATLAS,PTATLAS,BLAS,LAPACK,MKL}=None
