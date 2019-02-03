@@ -69,7 +69,7 @@ python_prepare_all() {
 			blas_libs = mkl_rt
 			[lapack]
 			library_dirs = $(pc_libdir lapack):${libdir}
-			lapack_libs = mkl_rt
+			lapack_libs = 
 		EOF
 	else
 		export {ATLAS,PTATLAS,BLAS,LAPACK,MKL}=None
