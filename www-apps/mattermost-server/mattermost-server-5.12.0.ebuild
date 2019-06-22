@@ -160,9 +160,6 @@ src_install() {
 	insinto /usr/share/mattermost
 	doins -r {fonts,i18n,templates}
 
-	insinto /usr/share/mattermost/config
-	doins config/timezones.json
-
 	insinto /usr/share/mattermost/client
 	doins -r client/dist/*
 
