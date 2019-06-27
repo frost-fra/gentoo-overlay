@@ -10,19 +10,19 @@ inherit kernel-2
 detect_version
 detect_arch
 
-MPTCP_FILE="mptcp-v4.19-dc1745e03e12.patch"
+MPTCP_FILE="mptcp-v4.19.patch"
 
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 HOMEPAGE="http://multipath-tcp.org/patches/ http://dev.gentoo.org/~mpagano/genpatches http://multipath-tcp.org"
 IUSE="deblob experimental +mptcp"
 
 DESCRIPTION="MultiPath-TCP sources including the Gentoo patchset, Multipath support for the ${KV_MAJOR}.${KV_MINOR} kernel tree"
-SRC_URI="${KERNEL_URI} ${GENPATCHES_URI} ${ARCH_URI}
-	http://multipath-tcp.org/patches/${MPTCP_FILE}
-"
+SRC_URI="${KERNEL_URI} ${GENPATCHES_URI} ${ARCH_URI}"
+
 src_prepare() {
 	if [ ! -d "$WORKDIR/net/mptcp" ]; then
-		use mptcp && epatch "${DISTDIR}/${MPTCP_FILE}"
+		einfo "Pruefe ob der Patchprozess notwendig ist"
+		use mptcp && epatch "${FILESDIR}/${MPTCP_FILE}"
 		ver=${MPTCP_FILE//\.patch/}
 		version=${ver//mptcp-/}
 		einfo "changing version info to ${version}"
