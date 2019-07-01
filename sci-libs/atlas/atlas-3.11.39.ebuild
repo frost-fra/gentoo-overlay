@@ -17,7 +17,7 @@ SRC_URI="mirror://sourceforge/math-atlas/${PN}${PV}.tar.bz2
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="+deprecated doc +fortran generic ifko +lapack static-libs threads"
+IUSE="+deprecated doc +fortran generic ifko +lapack static-libs skylake_server threads"
 
 REQUIRED_USE="
 	deprecated? ( lapack )
@@ -114,6 +114,7 @@ src_configure() {
 		# basically assuming sse2+sse1 and 2 threads max
 		use generic && use x86   && myconf+=( "-V 384 -A 13")
 		use generic && use amd64 && myconf+=( "-V 384 -A 24")
+		use skylake_server && myconf+=( "-V 1920 -A 33")
 
 		local confdir="${S}_${1}"; shift
 		myconf+=( $(usex ifko "--use-ifko" "") )
