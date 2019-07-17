@@ -3,8 +3,7 @@
 
 EAPI=7
 
-INTEL_DIST_SKU=3235
-INTEL_DIST_PV=2018_update2_cluster_edition
+INTEL_DIST_PV=2019_update4_cluster_edition
 
 inherit intel-sdp-r1
 
@@ -14,50 +13,57 @@ HOMEPAGE="http://software.intel.com/en-us/articles/intel-compilers/"
 IUSE="+compiler doc +mpi +openmp"
 KEYWORDS="-* ~amd64 ~x86 ~amd64-linux ~x86-linux"
 
+SLOT="0"
+
+MY_PV=$(ver_rs 3 '-')  # 19.0.3-199
+MY_PV2=$(ver_cut 1-2)  # 19.0
+MY_PV3='20'$(ver_cut 1)  # 2019
+MY_PV4="${MY_PV3}."$(ver_cut 3)'-'$(ver_cut 4)  # 2019.3-199
+
 CHECKREQS_DISK_BUILD=750M
 
 INTEL_DIST_BIN_RPMS=()
 INTEL_DIST_DAT_RPMS=(
-	"c-comp-common-18.0.2-199-18.0.2-199.noarch.rpm"
-	"comp-l-all-common-18.0.2-199-18.0.2-199.noarch.rpm"
-	"comp-l-all-vars-18.0.2-199-18.0.2-199.noarch.rpm"
-	"comp-nomcu-vars-18.0.2-199-18.0.2-199.noarch.rpm")
+	"c-comp-common-${MY_PV}-${MY_PV}.noarch.rpm"
+	"comp-l-all-common-${MY_PV}-${MY_PV}.noarch.rpm"
+	"comp-l-all-vars-${MY_PV}-${MY_PV}.noarch.rpm"
+	"comp-nomcu-vars-${MY_PV}-${MY_PV}.noarch.rpm")
 INTEL_DIST_X86_RPMS=(
-	"comp-32bit-18.0.2-199-18.0.2-199.x86_64.rpm"
-	"comp-ps-32bit-18.0.2-199-18.0.2-199.x86_64.rpm"
-	"comp-ps-ss-bec-32bit-18.0.2-199-18.0.2-199.x86_64.rpm")
+	"comp-32bit-${MY_PV}-${MY_PV}.x86_64.rpm"
+	"comp-ps-32bit-${MY_PV}-${MY_PV}.x86_64.rpm"
+	"comp-ps-ss-bec-32bit-${MY_PV}-${MY_PV}.x86_64.rpm")
 INTEL_DIST_AMD64_RPMS=(
-	"comp-18.0.2-199-18.0.2-199.x86_64.rpm"
-	"comp-ps-18.0.2-199-18.0.2-199.x86_64.rpm"
-	"comp-ps-ss-18.0.2-199-18.0.2-199.x86_64.rpm"
-	"comp-ps-ss-bec-18.0.2-199-18.0.2-199.x86_64.rpm")
+	"comp-${MY_PV}-${MY_PV}.x86_64.rpm"
+	"comp-ps-${MY_PV}-${MY_PV}.x86_64.rpm"
+	"comp-ps-ss-${MY_PV}-${MY_PV}.x86_64.rpm"
+	"comp-ps-ss-bec-${MY_PV}-${MY_PV}.x86_64.rpm")
 
 pkg_setup() {
 	if use doc; then
-		INTEL_DIST_DAT_RPMS+=( "comp-doc-18.0-18.0.2-199.noarch.rpm" )
+		INTEL_DIST_DAT_RPMS+=( "comp-doc-${MY_PV2}-${MY_PV}.noarch.rpm" )
 	fi
 
 	if use mpi; then
-		INTEL_DIST_AMD64_RPMS+=( "mpi-rt-2018.2-199-2018.2-199.x86_64.rpm" )
+		INTEL_DIST_AMD64_RPMS+=( "mpi-rt-${MY_PV4}-${MY_PV4}.x86_64.rpm" )
 
 		if use doc; then
-			INTEL_DIST_DAT_RPMS+=( "mpi-doc-2018-2018.2-199.x86_64.rpm" )
+			INTEL_DIST_DAT_RPMS+=( "mpi-doc-${MY_PV3}-${MY_PV4}.x86_64.rpm" )
 		fi
 	fi
 
 	if use openmp; then
-		INTEL_DIST_DAT_RPMS+=( "openmp-common-18.0.2-199-18.0.2-199.noarch.rpm" )
-		INTEL_DIST_AMD64_RPMS+=( "openmp-18.0.2-199-18.0.2-199.x86_64.rpm" )
-		INTEL_DIST_X86_RPMS+=( "openmp-32bit-18.0.2-199-18.0.2-199.x86_64.rpm" )
+		INTEL_DIST_DAT_RPMS+=( "openmp-common-${MY_PV}-${MY_PV}.noarch.rpm" )
+		INTEL_DIST_AMD64_RPMS+=( "openmp-${MY_PV}-${MY_PV}.x86_64.rpm" )
+		INTEL_DIST_X86_RPMS+=( "openmp-32bit-${MY_PV}-${MY_PV}.x86_64.rpm" )
 
 		if use compiler; then
 			INTEL_DIST_DAT_RPMS+=(
-				"openmp-common-icc-18.0.2-199-18.0.2-199.noarch.rpm"
-				"openmp-common-ifort-18.0.2-199-18.0.2-199.noarch.rpm")
+				"openmp-common-icc-${MY_PV}-${MY_PV}.noarch.rpm"
+				"openmp-common-ifort-${MY_PV}-${MY_PV}.noarch.rpm")
 			INTEL_DIST_AMD64_RPMS+=(
-				"openmp-ifort-18.0.2-199-18.0.2-199.x86_64.rpm")
+				"openmp-ifort-${MY_PV}-${MY_PV}.x86_64.rpm")
 			INTEL_DIST_X86_RPMS+=(
-				"openmp-ifort-32bit-18.0.2-199-18.0.2-199.x86_64.rpm")
+				"openmp-ifort-32bit-${MY_PV}-${MY_PV}.x86_64.rpm")
 		fi
 	fi
 }
