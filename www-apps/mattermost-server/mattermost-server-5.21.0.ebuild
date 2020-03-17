@@ -73,28 +73,6 @@ src_unpack() {
 
 src_prepare() {
 	local datadir="${EPREFIX}/var/lib/mattermost"
-	# Disable developer settings, fix path, set to listen localhost
-	# and disable diagnostics (call home) by default.
-	# shellcheck disable=SC2086
-	sed -i \
-		-e 's|\("ListenAddress":\).*\(8065\).*|\1 "127.0.0.1:\2",|' \
-		-e 's|\("ListenAddress":\).*\(8067\).*|\1 "127.0.0.1:\2"|' \
-		-e 's|\("ConsoleLevel":\).*|\1 "INFO",|' \
-		-e 's|\("EnableDiagnostics":\).*|\1 false|' \
-		-e 's|\("Directory":\).*\(/data/\).*|\1 "'${datadir}'\2",|g' \
-		-e 's|\("Directory":\).*\(/plugins\).*|\1 "'${datadir}'\2",|' \
-		-e 's|\("ClientDirectory":\).*\(/client/plugins\).*|\1 "'${datadir}'\2",|' \
-		-e 's|tcp(dockerhost:3306)|unix(/run/mysqld/mysqld.sock)|' \
-		config/default.json || die
-
-	# Reset email sending to original configuration
-	sed -i \
-		-e 's|\("SendEmailNotifications":\).*|\1 false,|' \
-		-e 's|\("FeedbackEmail":\).*|\1 "",|' \
-		-e 's|\("SMTPServer":\).*|\1 "",|' \
-		-e 's|\("SMTPPort":\).*|\1 "",|' \
-		config/default.json || die
-
 	# shellcheck disable=SC1117
 	# Remove the git call, as the tarball isn't a proper git repository
 	sed -i \
