@@ -73,7 +73,7 @@ src_unpack() {
 
 src_prepare() {
 	local datadir="${EPREFIX}/var/lib/mattermost"
-	local OUTPUT_CONFIG="${S}/config/default.json"
+	OUTPUT_CONFIG="${S}/config/default.json"
 	einfo "Der Inhalt von OUTPUT_CONFIG lautet: ${OUTPUT_CONFIG}"
 	einfo "Starte die Erstellung der default.json Datei"
 	go generate "${mygoargs[@]}" ./config || die
