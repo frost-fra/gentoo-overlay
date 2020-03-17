@@ -73,6 +73,9 @@ src_unpack() {
 
 src_prepare() {
 	local datadir="${EPREFIX}/var/lib/mattermost"
+
+	einfo "Hallo $S lautet: ${S}"
+	einfo "Hallo2 $G lautet: ${G}"
 	# shellcheck disable=SC1117
 	# Remove the git call, as the tarball isn't a proper git repository
 	sed -i \
