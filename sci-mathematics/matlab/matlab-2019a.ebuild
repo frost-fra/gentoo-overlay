@@ -20,7 +20,7 @@
 # be modified.
 # Also needs Python v3.5 installed as minimum Version
 # All supported Python versions can be found under the path
-# /opt/matlab/R2018a/bin/glnxa64/ then search for matlabruntimeforpython
+# /opt/matlab/R2019a/bin/glnxa64/ then search for matlabruntimeforpython
 #
 # Distributed under the terms of the ISC licence
 # $Header: $
@@ -113,7 +113,7 @@ src_install() {
 	"${CDROM_ROOT}"/install \
 		-inputFile "${T}"/installer_input.txt \
 		-tmpdir "${T}" \
-		-javauserdir "${T}" \
+		-javadir "${T}" \
 		-verbose \
 		|| die
 
