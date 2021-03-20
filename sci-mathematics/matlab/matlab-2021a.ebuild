@@ -27,8 +27,6 @@
 
 EAPI=5
 
-PYTHON_COMPAT=( python2_7 python3_{5,6,7,8} )
-
 inherit cdrom
 
 MY_PV=R${PV}
