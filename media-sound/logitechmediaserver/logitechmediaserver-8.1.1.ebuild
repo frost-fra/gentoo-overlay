@@ -67,6 +67,7 @@ RDEPEND="
 	>=dev-perl/File-Slurp-9999.270.0
 	>=dev-perl/File-Which-1.220.0
 	>=dev-perl/HTML-Parser-3.720.0
+	>=dev-perl/HTTP-Daemon-6.120.0
 	>=dev-perl/IO-Socket-SSL-2.66.0
 	>=dev-perl/IO-String-1.80.0-r1
 	>=dev-perl/JSON-XS-3.40.0
