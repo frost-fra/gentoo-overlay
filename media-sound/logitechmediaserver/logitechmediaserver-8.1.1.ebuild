@@ -174,26 +174,18 @@ src_install() {
 	newexe scanner.pl logitechmediaserver-scanner
 	newexe cleanup.pl logitechmediaserver-cleanup
 
-	# Get the Perl package name and version
-	eval `perl '-V:package'`
-	eval `perl '-V:version'`
+	# Get the path to the Perl vendor_perl directory
+	eval `perl '-V:vendorlib'`
 
 	# The custom OS module for Gentoo - provides OS-specific path details
 	cp "${FILESDIR}/gentoo-filepaths.pm" "Slim/Utils/OS/Custom.pm" || die "Unable to install Gentoo custom OS module"
 
         elog "Kopiere die Perl Module des Logitech Media Servers"
-        elog "in das Verzeichnis /usr/lib/${package}/vendor_perl/${version}"
+        elog "in das Verzeichnis ${vendorlib}"
         elog ""
 	# The server Perl modules
-	dodir "/usr/lib/${package}/vendor_perl/${version}"
-	cp -r Slim "${D}usr/lib/${package}/vendor_perl/${version}" || die "Unable to install server Perl modules"
-
-	elog "Erzeuge einen Link fuer die Module des Logitech Media Servers"
-	elog "vom Verzeichnis /usr/lib/${package}/vendor_perl/${version}/Slim"
-	elog "in das Verzeichnis /usr/lib64/${package}/vendor_perl/${version}/Slim"
-	elog
-	dodir "/usr/lib64/${package}/vendor_perl/${version}"
-	ln -s "${D}usr/lib/${package}/vendor_perl/${version}/Slim" "${D}usr/lib64/${package}/vendor_perl/${version}/Slim" || die "Unabel to create Link to the server Perl modules"
+	dodir "${vendorlib}"
+	cp -r Slim "${D}${vendorlib}" || die "Unable to install server Perl modules"
 
 	# Compiled CPAN module go under lib as they are arch-specific
 	dodir "/usr/lib/logitechmediaserver/CPAN"
