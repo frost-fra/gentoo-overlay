@@ -218,9 +218,9 @@ src_install() {
 
 	# Documentation
 	elog "Kopiere die Dokumentations Dateien in das Verzeichnis"
-	elog "/usr/share/doc/logitechmediaserver-8.1.1/"
+	elog "/usr/share/doc/logitechmediaserver-${MAJOR_VER}.${MINOR_VER}/"
 	elog "unterhalb des Ordners"
-	elog "/var/tmp/portage/media-sound/logitechmediaserver-8.1.1/image/"
+	elog "/var/tmp/portage/media-sound/logitechmediaserver-${MAJOR_VER}.${MINOR_VER}/image/"
 	elog ""
 	dodoc Changelog*.html
 	dodoc SOCKS.txt
@@ -231,7 +231,7 @@ src_install() {
 	# Configuration files
         elog "Kopiere die Konfigurations Dateien in das Verzeichnis"
         elog "/etc/logitechmediaserver innerhalb des Ordners"
-	elog "/var/tmp/portage/media-sound/logitechmediaserver-8.1.1/image/"
+	elog "/var/tmp/portage/media-sound/logitechmediaserver-${MAJOR_VER}.${MINOR_VER}/image/"
 	elog ""
 	insinto /etc/logitechmediaserver
 	doins convert.conf
@@ -253,7 +253,7 @@ src_install() {
 	if [ ! -f "${PREFSDIR}/logitechmediaserver.prefs" ]; then
 		elog "Diese Datei existiert nicht daher fuege ich nun eine neue"
 		elog "logitechmediaserver.prefs Datei aus dem Verzeichnis: ${FILESDIR}"
-		elog "in das Verzeichnis /var/tmp/portage/media-sound/logitechmediaserver-8.1.1/image/${PREFSDIR} ein"
+		elog "in das Verzeichnis /var/tmp/portage/media-sound/logitechmediaserver-${MAJOR_VER}.${MINOR_VER}/image/${PREFSDIR} ein"
 		newins "${FILESDIR}/logitechmediaserver.prefs" logitechmediaserver.prefs
 	fi
 	elog "Passe den File-Owner und die File-Permission der Preferences Datei an"
@@ -263,7 +263,7 @@ src_install() {
 
 	# Initialize run directory (where the PID file lives)
 	elog "Erstelle einen neuen Ordner namens logitechmediaserver im verzeichnis"
-	elog "/var/tmp/portage/media-sound/logitechmediaserver-8.1.1/image/var/run/logitechmediaserver"
+	elog "/var/tmp/portage/media-sound/logitechmediaserver-${MAJOR_VER}.${MINOR_VER}/image/var/run/logitechmediaserver"
 	elog ""
 	dodir /var/run/logitechmediaserver
 	fowners ${RUN_GID}:${RUN_UID} /var/run/logitechmediaserver
@@ -271,7 +271,7 @@ src_install() {
 
 	# Initialize server cache directory
 	elog "Erstelle einen neuen Ordner namens cache im Verzeichnis"
-	elog "/var/tmp/portage/media-sound/logitechmediaserver-8.1.1/image/var/lib/logitechmediaserver/cache"
+	elog "/var/tmp/portage/media-sound/logitechmediaserver-${MAJOR_VER}.${MINOR_VER}/image/var/lib/logitechmediaserver/cache"
 	elog ""
 	dodir /var/lib/logitechmediaserver/cache
 	fowners ${RUN_GID}:${RUN_UID} /var/lib/logitechmediaserver/cache
@@ -279,7 +279,7 @@ src_install() {
 
 	# Initialize the log directory
 	elog "Erstelle einen neuen Ordner mit dem Namen logitechmediaserver im Verzeichnis"
-	elog "/var/tmp/portage/media-sound/logitechmediaserver-8.1.1/image/var/log/logitechmediaserver"
+	elog "/var/tmp/portage/media-sound/logitechmediaserver-${MAJOR_VER}.${MINOR_VER}/image/var/log/logitechmediaserver"
 	elog ""
 	dodir /var/log/logitechmediaserver
 	fowners ${RUN_GID}:${RUN_UID} /var/log/logitechmediaserver
@@ -293,7 +293,7 @@ src_install() {
 
 	# Initialise the user-installed plugins directory
 	elog "Erstelle einen neuen Ordner mit dem Namen ${PLUGINSDIR}"
-	elog "Im Verzeichnis: /var/tmp/portage/media-sound/logitechmediaserver-8.1.1/image/"
+	elog "Im Verzeichnis: /var/tmp/portage/media-sound/logitechmediaserver-${MAJOR_VER}.${MINOR_VER}/image/"
 	elog ""
 	dodir "${PLUGINSDIR}"
 	fowners ${RUN_GID}:${RUN_UID} "${PLUGINSDIR}"
