@@ -127,7 +127,7 @@ RDEPEND="
 	aac? ( media-libs/faad2 )
 	"
 
-S="${WORKDIR}/logitechmediaserver-8.1.1-noCPAN"
+S="${WORKDIR}/${MY_P}"
 
 CPANKEEP="
 	DBIx/
