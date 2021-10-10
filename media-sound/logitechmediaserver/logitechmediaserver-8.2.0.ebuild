@@ -7,7 +7,7 @@ inherit eutils user
 
 MAJOR_VER="${PV:0:3}"
 MINOR_VER="${PV:4:1}"
-BUILD_NUM="1610364019"
+BUILD_NUM="1627922070"
 MY_P="logitechmediaserver-${MAJOR_VER}.${MINOR_VER}-noCPAN"
 MY_P_BUILD_NUM="logitechmediaserver-${MAJOR_VER}.${MINOR_VER}-${BUILD_NUM}-noCPAN"
 
