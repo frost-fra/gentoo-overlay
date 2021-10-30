@@ -130,6 +130,7 @@ RDEPEND="
 S="${WORKDIR}/${MY_P}"
 
 CPANKEEP="
+	Class/
 	DBIx/
 	Media/
 	"
@@ -188,7 +189,7 @@ src_install() {
 	cp -r Slim "${D}${vendorlib}" || die "Unable to install server Perl modules"
 
 	# Compiled CPAN module go under lib as they are arch-specific
-	dodir "/usr/lib/logitechmediaserver/CPAN"
+#	dodir "/usr/lib/logitechmediaserver/CPAN"
 #	cp -r CPAN/arch "${D}/usr/lib/squeezeboxserver/CPAN" || die "Unable to install compiled CPAN modules"
 
 
