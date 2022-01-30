@@ -111,7 +111,7 @@ src_configure() {
 
 src_compile() {
 	einfo
-	einfo "Dies ist der compile Abschnitt"
+	einfo "Dies ist der compile Abschnitt" \
 	|| die
 }
 
