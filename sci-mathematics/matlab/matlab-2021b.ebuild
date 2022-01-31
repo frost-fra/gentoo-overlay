@@ -25,7 +25,7 @@
 # Distributed under the terms of the ISC licence
 # $Header: $
 
-EAPI=5
+EAPI=6
 
 inherit cdrom
 
@@ -44,7 +44,7 @@ IUSE=""
 HDEPEND="app-admin/chrpath"
 LIBDEPEND=""
 LIBDEPEND=""
-RDEPEND="${PYTHON_DEPS} ${LIBDEPEND} =sys-devel/gcc-6.3.0"
+RDEPEND="${PYTHON_DEPS} ${LIBDEPEND} =sys-devel/gcc-9*"
 DEPEND="${RDEPEND}"
 [[ ${EAPI} == *-hdepend ]] || DEPEND+=" ${HDEPEND}"
 
